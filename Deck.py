@@ -1,5 +1,5 @@
 class Deck:
-# Card class has attributes:
+# Deck class has attributes:
 
     def __init__(self, aaa, bbb):
         self.aaa = aaa;
