@@ -1,10 +1,17 @@
+from Card import Card
+
 class Deck:
 # Deck class has attributes:
-
-    deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] * 4
-    dealerHand = []
-    playerHand = []
-
-    def __init__(self, aaa, bbb):
-        self.aaa = aaa;
-        self.bbb = bbb;
+    def __init__(self, copies):
+        suit = ["hearts","diamonds","spades","clubs"];
+        face = [2,3,4,5,6,7,8,9,10,'a','k','q','j'];
+        d = [];
+        for x in range(copies):
+            for s in suit:
+                for f in face:
+                    d.append(Card(s,f));
+        self.cardList = d;
+        
+    def printDeck(self):
+        for c in self.cardList:
+            print(c.face, "of", c.suit, "\n");
