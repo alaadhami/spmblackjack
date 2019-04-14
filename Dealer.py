@@ -14,10 +14,10 @@ class Dealer:
         for i in range(2):
             random.shuffle(deck)
             card = deck.pop()
-            if card == 11:card = "J"
-            if card == 12:card = "Q"
-            if card == 13:card = "K"
-            if card == 14:card = "A"
+            if card == 11:card = "j"
+            if card == 12:card = "q"
+            if card == 13:card = "k"
+            if card == 14:card = "a"
             hand.append(card)
             return hand
 
@@ -25,9 +25,9 @@ class Dealer:
 
     def hit(hand):
         card = deck.pop()
-        if card == 11: card = "J"
-        if card == 12: card = "Q"
-        if card == 13: card = "K"
-        if card == 14: card = "A"
+        if card == 11: card = "j"
+        if card == 12: card = "q"
+        if card == 13: card = "k"
+        if card == 14: card = "a"
         hand.append(card)
         return hand
