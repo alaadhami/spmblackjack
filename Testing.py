@@ -15,5 +15,6 @@ p1.hit(newDeck);
 print(p1.name,"'s hand is:\n");
 
 p1.printHand();
+print("Value:", p1.getHandValue());
 
 input();

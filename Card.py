@@ -9,10 +9,8 @@ class Card:
         self.suit = suit;
         self.face = face;
         if face == 'j' or face == 'q' or face == 'k':
-                self.value1 = 10;
-                self.value2 = 10;
+                self.value = 10;
         elif face == 'a':
-                self.value1 = 1;
-                self.value2 = 11;
+                self.value = 1;
         else:
-                self.value1 = face;
+                self.value = face;
