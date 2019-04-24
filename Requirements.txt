@@ -1,0 +1,27 @@
+Text from Email:
+Please make sure to include the option of using 1,2, or 3 decks of cards in the game, implement a randomizzing shuffle, 
+include player betting, think about handling a split, and include 1 or 2 player modes with the dealer being the app. 
+Also describe the project planning, risks, task scheduling, hours spent, and demo the app.
+
+-multiple decks - done
+-randomizzing shuffle - used pythons random.shuffle, might have better options
+-include player betting - in progress
+-handling split - in progress
+-1 or 2 player modes - in progress
+-dealer AI - in progress
+
+GUI elements needed:
+Main Menu:
+	select number of players/enter player names.
+	# of decks.
+Game:
+	dealer cards at top and players at bottom. Players names should be visable pluse their balance and how much
+	they are currently betting and their current hands cards and it's value.
+	need a way for each player to change their bets before the begining of each draw (bet phase, no cards on table)
+	durring draw phase players get 2 cards and dealer gets 1
+	players need buttons to indicate 'hit me', 'split', 'surrender', 'stand' during their draw phase
+	each player takes turns going through draw phase, once both players stand or bust-out the dealer takes their turn
+	once dealer is done payout phase determins results of betting.
+
+blackjack is a game that goes on forever like this untill the players quit. maybe implement context menu options for reset game and back to main menu. 
+	
