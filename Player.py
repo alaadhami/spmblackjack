@@ -27,7 +27,7 @@ class Player:
             return 'Bust';
         if (len(self.hand) == 2 and value == 21):
             return 'Blackjack';
-            #This is a special case where the player has a face card and an ace in their hand for the initial draw
+            #This is a special case where the player gets 21 for the initial 2 card draw
             #It pays differently than a simple win 2:1 as apposed to 1:1
         return value;
 
