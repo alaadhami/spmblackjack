@@ -8,10 +8,6 @@ class Player:
     def hit(self, deck):
         self.hand.append(deck.cardList.pop());
 
-    def printHand(self):
-        for c in self.hand:
-            print(c.face, "of", c.suit, "\n");
-
     def getHandValue(self):
         aces = 0;
         value = 0;
@@ -30,6 +26,11 @@ class Player:
             #This is a special case where the player gets 21 for the initial 2 card draw
             #It pays differently than a simple win 2:1 as apposed to 1:1
         return value;
+    
+    def printHand(self):
+        for c in self.hand:
+            print(c.face, "of", c.suit);
+        print('(',self.getHandValue(),')');
 
     def discardHand(self):
         del self.hand;
