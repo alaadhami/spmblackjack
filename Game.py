@@ -35,10 +35,8 @@ class Game:
         #Play phase
     def playerPlayPhase(self):
         for p in self.players:
-            if p.hand[0].face == p.hand[1].face:
+            if p.hand[0].value == p.hand[1].value:
                 split = True;
-
-            split = True; #DELETE AFTER DEBUGGING
             
             if p.getHandValue() != 'Blackjack':
                 in_play = True;
