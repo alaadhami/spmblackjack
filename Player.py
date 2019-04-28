@@ -3,6 +3,7 @@ class Player:
     def __init__(self, name, balance):
         self.name = name;
         self.balance = balance;
+        self.bet = 0;
         self.hand = [];
 
     def hit(self, deck):

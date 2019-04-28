@@ -19,4 +19,9 @@ p1.printHand();
 print("Value:", p1.getHandValue());
 '''
 game = Game(2,3,2);
+game.setup();
+games = 5;
+while games != 0:
+    games -= 1;
+    game.replay();
 input();

@@ -11,10 +11,10 @@ class Deck:
             for s in suit:
                 for f in face:
                     cl.append(Card(s,f));
+        random.shuffle(cl);
+        random.shuffle(cl);
+        random.shuffle(cl);
         self.cardList = cl;
-        random.shuffle(cl);
-        random.shuffle(cl);
-        random.shuffle(cl);
         
     def printDeck(self):
         for c in self.cardList:
