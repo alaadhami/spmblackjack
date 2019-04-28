@@ -3,8 +3,7 @@ class Card:
 #	suit (heart,diamond,spade,clubs);
 #	face (2-10, j, q, k, a)
 #	value1 (1-11)
-#	value2 (1-11)
-# Both values are derived from face
+# value is derived from face
     def __init__(self, suit, face):
         self.suit = suit;
         self.face = face;

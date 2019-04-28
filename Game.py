@@ -26,40 +26,81 @@ class Game:
         #Draw phase
     def drawPhase(self):
         self.dealer.hit(self.deck);
-        print('Dealer:');
+        print('Dealer Hand:');
         self.dealer.printHand();
         for p in self.players:
             p.hit(self.deck);
             p.hit(self.deck);
-            print(p.name,':');
-            p.printHand();
             
         #Play phase
     def playerPlayPhase(self):
         for p in self.players:
+            if p.hand[0].face == p.hand[1].face:
+                split = True;
+
+            split = True; #DELETE AFTER DEBUGGING
+            
             if p.getHandValue() != 'Blackjack':
                 in_play = True;
-                double = True;
+                first = True;
                 while in_play:
-                    print(p.name,':');
-                    play = input("'hit','stand','surrender','split','double'?:");
+                    print(p.name,'hand:');
+                    p.printHand();
+                    if split and not(p.split):
+                        print ("can 'split'");
+                    play = input("'hit','stand','surrender','double'?:");
                     if (play == 'stand'):
                         in_play = False;
                     elif (play == 'hit'):
-                        double = False;
+                        first = False;
                         p.hit(self.deck);
-                        p.printHand();
                         v = p.getHandValue();
                         if v == 'Bust' or v == 21:
                             in_play = False;
-                    elif (play == 'double' and double):
+                    elif (play == 'double' and first):
                         p.bet = p.bet*2;
                         p.hit(self.deck);
                         p.printHand();
                         in_play = False;
-                    elif (play == 'surrender' and double):
+                    elif (play == 'surrender' and first):
                         p.balance -= p.bet/2;
                         p.bet = 0;
+                        in_play = False;
+                    elif (play == 'split' and split and not(p.split)):
+                        p.split = True;
+                        p.splitHand.append(p.hand.pop());
+                        p.splitBet = p.bet;
+            else:
+                print(p.name,'hand:');
+                p.printHand();
+            
+                        
+        for p in self.players:
+            if p.split:
+                in_play = True;
+                first = True;
+                while in_play:
+                    print(p.name,' second hand:');
+                    p.printSplitHand();
+                    play = input("'hit','stand','surrender','double'?:");
+                    if (play == 'stand'):
+                        in_play = False;
+                    elif (play == 'hit'):
+                        first = False;
+                        p.hitSplit(self.deck);
+                        p.printSplitHand();
+                        v = p.getSplitHandValue();
+                        if v == 'Bust' or v == 21:
+                            in_play = False;
+                    elif (play == 'double' and first):
+                        p.splitBet = p.splitBet*2;
+                        p.hitSplit(self.deck);
+                        p.printSplitHand();
+                        in_play = False;
+                    elif (play == 'surrender' and first):
+                        p.balance -= p.splitBet/2;
+                        p.splitBet = 0;
+                        in_play = False;
 
         #Dealer play phase
     def dealerPlayPhase(self):
@@ -96,6 +137,34 @@ class Game:
             else:
                 p.balance -= p.bet;
                 print(p.name, 'Lose.');
+                
+        for p in self.players:
+            if p.split:
+                p.split = False;
+                pValue = p.getSplitHandValue();
+                p.discardSplitHand();
+                if pValue == 'Bust':
+                    p.balance -= p.splitBet;
+                    print(p.name, 'Lose.');
+                elif dValue == 'Bust':#dealer bust
+                    p.balance += p.splitBet;
+                    print(p.name, 'Win.');
+                elif pValue == 'Blackjack' and dValue != 'Blackjack':#player bj dealer no bj
+                    p.balance += p.splitBet*self.blackjack;
+                    print(p.name, 'BlackJack.');
+                elif dValue == 'Blackjack' and pValue != 'Blackjack':
+                    p.balance -= p.splitBet;
+                    print(p.name, 'Lose.');
+                elif pValue == dValue:
+                    print(p.name, 'Push.');
+                elif pValue > dValue:
+                    p.balance += p.splitBet;
+                    print(p.name, 'Win.');
+                else:
+                    p.balance -= p.splitBet;
+                    print(p.name, 'Lose.');
+                
+        for p in self.players:
             print(p.name, 'Balance:', p.balance);
 
     def replay(self):
