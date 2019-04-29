@@ -18,7 +18,7 @@ class Player:
         value = 0;
         for c in self.hand:
             value += c.value;
-            if c.face == 'a':
+            if c.face == 'A':
                 aces+=1;
         while (aces > 0):
             aces -=1;
@@ -49,7 +49,7 @@ class Player:
         value = 0;
         for c in self.splitHand:
             value += c.value;
-            if c.face == 'a':
+            if c.face == 'A':
                 aces+=1;
         while (aces > 0):
             aces -=1;

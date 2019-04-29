@@ -4,8 +4,8 @@ import random
 class Deck:
 # Deck class has attributes:
     def __init__(self, copies):
-        suit = ["hearts","diamonds","spades","clubs"];
-        face = [2,3,4,5,6,7,8,9,10,'a','k','q','j'];
+        suit = ["Hearts","Diamonds","Spades","Clubs"];
+        face = [2,3,4,5,6,7,8,9,10,'A','K','Q','J'];
         cl = [];
         for x in range(copies):
             for s in suit:

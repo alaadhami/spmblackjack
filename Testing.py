@@ -1,24 +1,11 @@
 from Deck import Deck
 from Player1 import Player
 from Game import Game
-'''
-p1 = Player("Jacob",1000);
-print(p1.name,'\n');
-print(p1.balance, '\n');
-
-newDeck = Deck(5);
-
-#newDeck.printDeck();
-
-p1.hit(newDeck);
-p1.hit(newDeck);
-
-print(p1.name,"'s hand is:\n");
-
-p1.printHand();
-print("Value:", p1.getHandValue());
-'''
-game = Game(2,3,2);
+players = int(input("Number of Players:"))
+decks = int(input("Size of Deck (# of copies):"))
+bj = float(input("Blackjack Multiplyer:"))
+print('-----------------------Game start-----------------------')
+game = Game(players,decks,bj);
 game.setup();
 games = 5;
 while games != 0:
