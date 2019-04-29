@@ -1,13 +1,13 @@
-import tkinter as tk   # python
+import tkinter as tk
 from tkinter import *
-#from cards import *
-#from gameplay import *
-#from player import *
+from cards import *
+from gameplay import *
+from player import *
 import random
 
 TITLE_FONT = ("Arial", 30, "bold")
 
-class BlackJackApp(tk.Tk):
+class BlackJackUI(tk.Tk):
 
     def __init__(self, *args, **kwargs):
 
@@ -26,7 +26,7 @@ class BlackJackApp(tk.Tk):
         self.container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (WelcomePage, SetUpPage):
+        for F in (WelcomeUIPage, MenuPage):
             page_name = F.__name__
             frame = F(self.container, self)
             self.frames[page_name] = frame
@@ -36,7 +36,7 @@ class BlackJackApp(tk.Tk):
             # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame("WelcomePage")
+        self.show_frame("WelcomeUIPage")
 
     def gridContainerInit(self, *args, **kwargs):
         self.container.pack_forget()
@@ -118,7 +118,7 @@ class BlackJackApp(tk.Tk):
 
 
     def settingsGame(self, controller):
-        self.show_frame("SetUpPage")
+        self.show_frame("MenuPage")
 
     def hitMeButton(self, controller):
         self.user.drawCard(controller.deck)
@@ -133,52 +133,48 @@ class BlackJackApp(tk.Tk):
         self.refrehGamePage(controller)
 
     def refrehGamePage(self, controller):
-        page_name = GamePage.__name__
-        frame = GamePage(self.container, controller)
+        page_name = MainGamePage.__name__
+        frame = MainGamePage(self.container, controller)
         self.frames[page_name] = frame
         frame.grid(row=0, column=0, sticky="nsew")
 
-        controller.show_frame("GamePage")
+        controller.show_frame("MainGamePage")
 
     def passVal2controller(self, controller, deck, host):
         self.deck = deck
         self.host = host
 
-class WelcomePage(tk.Frame):
+class WelcomeUIPage(tk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+        tk.Frame.__init__(self, parent, bg='orange2')
         self.controller = controller
-        label = tk.Label(self, text="Welcome to EngiMavs BlackJack", font=TITLE_FONT)
+        label = tk.Label(self, text="Welcome to EngiMavs BlackJack", font=TITLE_FONT, fg='blue2')
         label.pack(side="top", fill="x", pady=30)
 
 
-        button1 = tk.Button(self, text="Start Game", bg="blue",
-                            command=lambda: controller.show_frame("SetUpPage"))
-        button2 = tk.Button(self, text="Quit",
+        button1 = tk.Button(self, text="Start Game", bg="green3", fg='snow',
+                            command=lambda: controller.show_frame("MenuPage"))
+        button2 = tk.Button(self, text="Quit", bg='red2', fg='snow',
                             command=lambda: controller.closeApp())
         button1.pack(ipadx=50, ipady=40)
-        button2.pack(pady=10)
+        button2.pack(pady=30)
 
         button1.config(font=('copper black', 20, 'bold'))
 
-class SetUpPage(tk.Frame):
+class MenuPage(tk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+        tk.Frame.__init__(self, parent, bg='green3')
         self.controller = controller
-        nameLabel = tk.Label(self, text="What is your name?", font=TITLE_FONT)
+        nameLabel = tk.Label(self, text="Enter your name", font=TITLE_FONT, fg='blue2')
         name = tk.Entry(self, bd =5)
         var1 = IntVar()
-        dealerCheckButton = tk.Checkbutton(self, text="Playing as Dealer? (Not working yet)", variable=var1)
 
         nameLabel.pack(side="top", fill="x", pady=10)
         name.pack(ipadx=10, pady=5)
-        dealerCheckButton.pack()
 
-        #######
-
-        label = tk.Label(self, text="Select Player(s)", font=TITLE_FONT)
+        label = tk.Label(self, text="How many players will be playing?", font=TITLE_FONT, fg='blue2')
 
         var = tk.StringVar()
         var.set("1") # initial value
@@ -188,9 +184,7 @@ class SetUpPage(tk.Frame):
         label.pack(fill="x", pady=15)
         option.pack()
 
-        ########
-
-        totalCashLabel = tk.Label(self, text="Enter how much you would \nlike to bring into the game:")
+        totalCashLabel = tk.Label(self, text="Enter how much money you're\nbringing into the game:")
         totalCashIn = tk.Entry(self, bd =5)
         totalCashIn.insert(END, '$ ' + '500')
 
@@ -201,10 +195,10 @@ class SetUpPage(tk.Frame):
                            command=lambda: controller.okButton(controller, name, var, totalCashIn))
         button.pack(pady=40)
 
-class GamePage(tk.Frame):
+class MainGamePage(tk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+        tk.Frame.__init__(self, parent, bg='green3')
         self.controller = controller
         # 'controller.once' determines if it's the first init.
         # If it is (="1"), add players + generate card decks + draw cards,
@@ -458,5 +452,5 @@ class GamePage(tk.Frame):
             
         
 if __name__ == "__main__":
-    app = BlackJackApp()
+    app = BlackJackUI()
     app.mainloop()
