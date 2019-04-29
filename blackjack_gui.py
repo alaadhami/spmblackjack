@@ -71,7 +71,7 @@ class BlackJackUI(tk.Tk):
         # Add players to the game - depending on "Select Players" input
         game.addPlayer("Dealer", "D")
         self.dealer = game.playerDict["Dealer"]
-        self.dealer.money = random.randrange(400, 1000, 50)
+        self.dealer.money = 0
 
         if option == "2":
             game.addPlayer("Player2")

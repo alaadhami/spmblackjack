@@ -28,7 +28,15 @@ class player:
 
     def getTotalOnHand(self):
         totalOnHand = 0
+        aces = 0
         for i in self.onHand:
             totalOnHand += int(cards.numbersRep["%s" % i[0]])
-            self.totalOnHand = totalOnHand
-        cards.numbersRep['A'] = 11
+            if i[0] == 'A':
+                aces += 1
+            while (aces > 0):
+                if totalOnHand + 10 <= 21:
+                    totalOnHand += 10
+            if(len(self.onHand) == 2 and totalOnHand == 21):
+                #Player has blackjack and this needs to be known. Player gets bonus pay.
+                #totalOnHand = "BlackJack"
+
