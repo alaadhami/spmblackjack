@@ -215,14 +215,14 @@ class MainGamePage(tk.Frame):
         self.guiInit(controller)
 
 ### ====== Generate Cards, shuffle, and start game for the first init ====== ###
-    def gameInit(self, controller):
+    def gameInit(self, controller, decks):#added argument decks
         controller.once = "0"
         controller.showCard = False
         controller.user.bet = 0
 
         # Get a deck of cards, shuffle them!
         host = cards()
-        deck = host.generateDeck()#needs an int argument for copies
+        deck = host.generateDeck(decks)#needs an int argument for copies
         host.shuffleDeck(deck)
 
         # game.startGame makes joined players draw 2 cards to begin with, including dealer
