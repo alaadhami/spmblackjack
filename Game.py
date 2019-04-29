@@ -1,4 +1,4 @@
-from Player import Player
+from Player1 import Player
 from Deck import Deck
 from Dealer import Dealer
 class Game:

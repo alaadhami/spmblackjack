@@ -62,6 +62,7 @@ class BlackJackUI(tk.Tk):
         self.once = "1"
         self.showBetButtons = True
         self.showGamePlayButtons = False
+        self.showFirstPlayButtons = True #this needs to be known
 
         userName = self.name
         option = self.option
@@ -169,10 +170,16 @@ class MenuPage(tk.Frame):
         self.controller = controller
         nameLabel = tk.Label(self, text="Enter your name", font=TITLE_FONT, fg='blue2')
         name = tk.Entry(self, bd =5)
-        var1 = IntVar()
+        var1 = IntVar()#what does this do?
 
         nameLabel.pack(side="top", fill="x", pady=10)
         name.pack(ipadx=10, pady=5)
+##-----------
+        deckLabel = tk.Label(self, text="Enter number of decks", font=TITLE_FONT, fg='blue2')
+        decks = tk.Entry(self, bd=5)
+        deckLabel.insert(END,'3')
+        deckLabel.pack(side="top", fill="x", pady =20)
+##-----------###need a GUI input for number of decks on main page
 
         label = tk.Label(self, text="How many players will be playing?", font=TITLE_FONT, fg='blue2')
 
@@ -215,7 +222,7 @@ class MainGamePage(tk.Frame):
 
         # Get a deck of cards, shuffle them!
         host = cards()
-        deck = host.generateDeck()
+        deck = host.generateDeck()#needs an int argument for copies
         host.shuffleDeck(deck)
 
         # game.startGame makes joined players draw 2 cards to begin with, including dealer

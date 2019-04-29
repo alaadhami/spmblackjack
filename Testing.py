@@ -1,5 +1,5 @@
 from Deck import Deck
-from Player import Player
+from Player1 import Player
 from Game import Game
 '''
 p1 = Player("Jacob",1000);
