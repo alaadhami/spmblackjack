@@ -22,15 +22,15 @@ class cards:
         self.suits_symbols = ['♦', '♣', '♥', '♠']
         self.numbers = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
 
-    def generateDeck(self,copies):
+    def generateDeck(self):#needs coppies
         self.deck = []
-        for i in range(copies)
-            for i in self.numbers:
-                for j in self.suits_symbols:
-                    insertCard = []
-                    insertCard.append(i)
-                    insertCard.append(j)
-                    self.deck.append(insertCard)
+        #for i in range(copies)
+        for i in self.numbers:
+            for j in self.suits_symbols:
+                insertCard = []
+                insertCard.append(i)
+                insertCard.append(j)
+                self.deck.append(insertCard)
         return self.deck
 
     def shuffleDeck(self, deck):

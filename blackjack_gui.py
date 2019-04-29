@@ -175,10 +175,10 @@ class MenuPage(tk.Frame):
         nameLabel.pack(side="top", fill="x", pady=10)
         name.pack(ipadx=10, pady=5)
 ##-----------
-        deckLabel = tk.Label(self, text="Enter number of decks", font=TITLE_FONT, fg='blue2')
-        decks = tk.Entry(self, bd=5)
-        deckLabel.insert(END,'3')
-        deckLabel.pack(side="top", fill="x", pady =20)
+        #deckLabel = tk.Label(self, text="Enter number of decks", font=TITLE_FONT, fg='blue2')
+        #decks = tk.Entry(self, bd=5)
+        #deckLabel.insert(END,'3')
+        #deckLabel.pack(side="top", fill="x", pady =20)
 ##-----------###need a GUI input for number of decks on main page
 
         label = tk.Label(self, text="How many players will be playing?", font=TITLE_FONT, fg='blue2')
@@ -215,14 +215,14 @@ class MainGamePage(tk.Frame):
         self.guiInit(controller)
 
 ### ====== Generate Cards, shuffle, and start game for the first init ====== ###
-    def gameInit(self, controller, decks):#added argument decks
+    def gameInit(self, controller):#add argument decks
         controller.once = "0"
         controller.showCard = False
         controller.user.bet = 0
 
         # Get a deck of cards, shuffle them!
         host = cards()
-        deck = host.generateDeck(decks)#needs an int argument for copies
+        deck = host.generateDeck()#needs an int argument for copies
         host.shuffleDeck(deck)
 
         # game.startGame makes joined players draw 2 cards to begin with, including dealer
@@ -282,8 +282,10 @@ class MainGamePage(tk.Frame):
 
         for i in range (0, len(dealerOnHand)):
             if controller.showCard == True:
-                dealerCards = tk.Label(self, text=dealerOnHand[i], bg="black", fg="white")
+                dealerCards = tk.Label(self, text=dealerOnHand[i], bg="white", fg="black")
             else:
+                if i == 0 and controller.showGamePlayButtons:
+                    dealerCards = tk.Label(self, text=dealerOnHand[i], bg="white", fg="black")##########################
                 dealerCards = tk.Label(self, text=dealerOnHand[i], bg="black", fg="black")
             dealerCards.grid(row=3, column=1+i, padx=(0,5), ipadx=5, ipady=15)
 
@@ -412,7 +414,7 @@ class MainGamePage(tk.Frame):
 
         for i in range (0, len(userOnHand)):
             if (controller.showGamePlayButtons == True):
-                userCards = tk.Label(self, text=userOnHand[i], bg="black", fg="white")
+                userCards = tk.Label(self, text=userOnHand[i], bg="white", fg="black")
             else:
                 userCards = tk.Label(self, text=userOnHand[i], bg="black", fg="black")
             userCards.grid(row=21, column=1+i, padx=(0,5), ipadx=5, ipady=15)

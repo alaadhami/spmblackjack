@@ -36,7 +36,7 @@ class player:
             while (aces > 0):
                 if totalOnHand + 10 <= 21:
                     totalOnHand += 10
-            if(len(self.onHand) == 2 and totalOnHand == 21):
+            #if(len(self.onHand) == 2 and totalOnHand == 21):
                 #Player has blackjack and this needs to be known. Player gets bonus pay.
                 #totalOnHand = "BlackJack"
 
